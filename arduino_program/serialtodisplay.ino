@@ -25,11 +25,17 @@ void setup()
 void loop() 
 {
   int currentPosition = 0;
-  
+  int currentLine = 0;
   if (Serial.available() > 0) {
     lcd.clear();
-    while(Serial.available() > 0 {
-      lcd.setCursor(currentPosition, 0);
+    // Grab all lines from serial input
+    while(Serial.available() > 0) {
+      if (currentPosition == 16) {
+        // line wrap
+        currentLine = 1;
+        currentPosition = 0;
+      }
+      lcd.setCursor(currentPosition, currentLine);
       lcd.print((char)Serial.read());  
       currentPosition++; 
     }
