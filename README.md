@@ -5,7 +5,7 @@ Displays your current CPU speed on an arduino LCD
 
 ## Requirements
 
-- Arduino Uno
+- Arduino Uno or Nano (Or another compatible board. I've only tested with Uno and Nano, I cannot guarantee compatibility with anything else)
 - Sunfounder I2C LCD1602 (Other displays may work, this is the one I have, I know this one works).
 - Perl 5
 - CPAN library: Device::SerialPort
