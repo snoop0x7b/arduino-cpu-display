@@ -1,6 +1,8 @@
 # arduino-cpu-display
 Displays your current CPU speed on an arduino LCD
 
+![CPU Display In Action](/IMG_20201101_004829.jpg)
+
 ## Requirements
 
 - Arduino Uno
