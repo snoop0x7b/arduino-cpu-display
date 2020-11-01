@@ -17,18 +17,77 @@
 #include <LiquidCrystal_I2C.h>
 
 // initialize the library with the numbers of the interface pins
+
 LiquidCrystal_I2C lcd(0x27,16,2); // set the LCD address to 0x27 for a 16 chars and 2 line display
+
+boolean backlightState = true;
+
+// Button variable definitions
+const int buttonPin = 6;     // the number of the pushbutton pin
+// Use the onboard LED for debugging
+const int ledPin = 13;      // the number of the LED pin
+
+long debounceDelay = 100;
+long lastDebounceTime = 0;
+int buttonState;
+int lastButtonState = HIGH;
+
+
+
 /*********************************************************/
-void setup()
-{
+void setup() {
   lcd.init(); //initialize the lcd
   lcd.backlight(); //open the backlight 
+  // Input pullup is used when the button is connected to ground, like this project is meant to be.
+  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(ledPin, OUTPUT);
   lcd.clear();
   Serial.begin(9600);
 }
 /*********************************************************/
-void loop() 
-{
+void loop()  {
+  handleButton();
+  handleSerialCommunication();
+  if (backlightState) {
+    digitalWrite(ledPin, LOW);
+  } else {
+    digitalWrite(ledPin, HIGH);
+  }
+}
+
+
+void handleButton() {
+  int buttonReading = digitalRead(buttonPin);
+  if (buttonReading != lastButtonState) {
+    lastDebounceTime = millis();
+  }
+  // Only do the thing if we've seen the state change for long enough
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+
+    // if the button state has changed:
+    if (buttonReading != buttonState) {
+      buttonState = buttonReading;
+
+      // Toggle the backlight if trhe button is low.
+      if (buttonState == LOW) {
+        toggleBacklight();
+      }
+    }
+  }
+  lastButtonState = buttonReading;
+}
+
+void toggleBacklight() {
+  if (backlightState) {
+    lcd.noBacklight();
+    backlightState = false;
+  } else {
+    lcd.backlight();
+    backlightState = true;
+  }
+}
+
+void handleSerialCommunication() {
   int currentPosition = 0;
   int currentLine = 0;
   if (Serial.available() > 0) {
@@ -45,6 +104,4 @@ void loop()
       currentPosition++; 
     }
   }
-  delay(1);
 }
-
