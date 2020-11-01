@@ -14,7 +14,6 @@ int tim = 500; //the value of delay time
 // initialize the library with the numbers of the interface pins
 LiquidCrystal_I2C lcd(0x27,16,2); // set the LCD address to 0x27 for a 16 chars and 2 line display
 /*********************************************************/
-int currentPosition = 0;
 void setup()
 {
   lcd.init(); //initialize the lcd
@@ -25,14 +24,15 @@ void setup()
 /*********************************************************/
 void loop() 
 {
+  int currentPosition = 0;
+  
   if (Serial.available() > 0) {
-    if (currentPosition == 11) {
-      currentPosition = 0; // reset;
-      lcd.clear();
+    lcd.clear();
+    while(Serial.available() > 0 {
+      lcd.setCursor(currentPosition, 0);
+      lcd.print((char)Serial.read());  
+      currentPosition++; 
     }
-    lcd.setCursor(currentPosition,0); //Top line current position.
-    lcd.print((char)Serial.read()); // Add character to the display
-    currentPosition++; 
   }
   delay(1);
 }
