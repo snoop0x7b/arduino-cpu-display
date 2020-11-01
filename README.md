@@ -10,6 +10,7 @@ Displays your current CPU speed on an arduino LCD
 - Perl 5
 - CPAN library: Device::SerialPort
 - Sunfounder's LCD library http://wiki.sunfounder.cc/images/7/7e/LiquidCrystal_I2C.zip
+- Requires a Linux operating system
 
 ## Wiring Directions
 
