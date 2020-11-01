@@ -1,16 +1,21 @@
-/********************************
- * name:I2C LCD1602
- * function:You should now see your I2C LCD1602 display the flowing characters: "SunFounder" and "hello, world".
- ********************************/
-//Email:support@sunfounder.com
-//Website:www.sunfounder.com
-
-/********************************/
+/**
+ *
+ * Serial input to display for a 16x2 sunfounder display by Zach Stein
+ * This code is licensed under the MIT license. (c) 2020.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
+ * documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, 
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the 
+ * Software is furnished to do so, subject to the following conditions:
+ * the above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES 
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE 
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF 
+ * OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+**/
 // include the library code
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
 
-int tim = 500; //the value of delay time
 // initialize the library with the numbers of the interface pins
 LiquidCrystal_I2C lcd(0x27,16,2); // set the LCD address to 0x27 for a 16 chars and 2 line display
 /*********************************************************/
